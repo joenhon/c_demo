@@ -3,6 +3,8 @@ project(untitled3)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled3 main.cpp)
+include_directories(hpp)
+
+add_executable(untitled3 main.cpp cpp/method_pointer.cpp )
 
 target_link_libraries(untitled3 pthread)
