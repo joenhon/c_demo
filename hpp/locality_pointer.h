@@ -14,6 +14,17 @@ namespace pointer {
         *i = 10;
         return i;
     }
+
+    char* *f2(){
+        char **c = (char**)malloc(sizeof(char*));
+//        *c = "1";
+        return c;
+    }
+
+    //为指定类型申请内存空间
+    template<typename T> T *f3(){
+        return (T*) malloc(sizeof (T*));
+    }
 //无法过编译
 //    int *f2(){
 //        int x = 10;

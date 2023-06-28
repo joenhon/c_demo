@@ -6,6 +6,8 @@
 #define UNTITLED3_GRAMMAR_TEST_H
 #include <iostream>
 #include <thread>
+#include <sstream>
+
 using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono;
@@ -21,6 +23,21 @@ namespace grammar{
         };
         thread t1(tm1,2);
         return t1;
+    }
+
+    //String转任意类型
+    template<typename T> T stringToVoid(const char *str){
+        T result;
+        istringstream is(str);
+        is >> result;
+        return result;
+    }
+
+    //任意类型转String
+    template<typename T> string voidToString(T void_){
+        ostringstream os;
+        os<<void_;
+        return os.str();
     }
 }
 

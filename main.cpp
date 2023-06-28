@@ -22,7 +22,22 @@ int main() {
 
     int *i = f1();
     printf("f1:%d\n",*i);
+    printf("f1:%s\n",*f2());
     free(i);
+
+    int *i2 = f3<int>();
+    *i2 = 1234314213;
+    string str = voidToString<int>(*i2);
+    printf("int转String:%s;\n",str.c_str());
+
+    int i3 = stringToVoid<int>("2321431");
+    printf("string转int:%d\n",i3);
+
+    bool b1 = stringToVoid<bool>("false");
+    printf("string转bool:%s\n",b1?"真":"假");
+
+    auto d1 = stringToVoid<double>("3.1415962");
+    printf("string转double:%e\n",d1);
 
     return 0;
 }
