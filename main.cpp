@@ -11,6 +11,8 @@ using namespace pointer;
 using namespace grammar;
 
 int main() {
+    system("chcp 65001");
+
     //方法指针传递测试
     method_pointer_test();
 
@@ -22,7 +24,7 @@ int main() {
 
     int *i = f1();
     printf("f1:%d\n",*i);
-    printf("f1:%s\n",*f2());
+    printf("f2:%s\n",*f2());
     free(i);
 
     int *i2 = f3<int>();
