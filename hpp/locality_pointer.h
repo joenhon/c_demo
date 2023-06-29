@@ -22,7 +22,7 @@ namespace pointer {
 
     char* *f2(){
         char **c = f3<char*>();
-//        *c = "1";
+        *c = "1";
         return c;
     }
 
