@@ -27,9 +27,10 @@ enum encode {
 
 
 namespace file {
-    const char *readFile(const char *path) {
-        ifstream fin(path, ios::in);
-        string str;
+    void readFile(const char *path, string &result) {
+        static ifstream fin;
+        fin.open(path, ios::in);
+        stringstream str;
         if (fin.is_open()) {
 //            char buf[1024];
 //            while(fin.getline(buf,sizeof(buf))){
@@ -39,7 +40,9 @@ namespace file {
 //            }
             char buf = 0;
             while (fin.get(buf) && !fin.eof()) {
-                str.append(voidToString(buf));
+//                str.append(voidToString(buf));
+                str << buf;
+//                printf("%c", buf);
             }
             //输出文字到下一个空格或换行符结束 lymy
 //            string str1 ,str2;
@@ -47,15 +50,15 @@ namespace file {
 //            printf("str1:%s,str2:%s\n",str1.c_str(),str2.c_str());
         }
         fin.close();
-        return str.c_str();
+        result.append(str.str());
     }
 
     void write(const char *path, const char *content) {
-        ofstream f_out(path, ios::out|ios::binary|ios::app);
+        ofstream f_out(path, ios::out | ios::binary | ios::app);
         if (f_out) {
 //            f_out.write(content, strlen(content));
             //移动光标
-            f_out.seekp(0,ios::end);
+            f_out.seekp(0, ios::end);
             f_out << content;
         }
         f_out.flush();

@@ -1,9 +1,11 @@
 #include <iostream>
 #include <thread>
-#include "hpp/method_pointer.h"
-#include "hpp/grammar_test.h"
-#include "hpp/locality_pointer.h"
-#include "hpp/file_test.h"
+#include <fstream>
+#include "method_pointer.h"
+#include "grammar_test.h"
+#include "locality_pointer.h"
+#include "file_test.h"
+#include "net_test.h"
 
 using namespace std;
 using namespace std::this_thread;
@@ -11,9 +13,12 @@ using namespace std::chrono;
 using namespace pointer;
 using namespace grammar;
 using namespace file;
+using namespace net;
 
 int main() {
+#ifdef  WIN32
     system("chcp 65001");
+#endif
 
 //    //方法指针传递测试
 //    method_pointer_test();
@@ -45,12 +50,20 @@ int main() {
 
 //    printf("文件：%s\n",readFile("C:/test.log"));
 
-    write("E:/test.txt","2");
-    printf("文件：%s\n",readFile("E:/test.txt"));
-    string in;
-    getline(cin,in);
-    cout << in <<endl;
+//    write("E:/test.txt","2");
+//    string str;
+//    readFile("/root/test.txt",str);
+//    printf("文件：%s\n",str.c_str());
 
+//    char in[2];
+//    scanf("%s",in);
+//    cout << in <<endl;
+
+//    socket_test();
+    socket_send_test();
+    while (1){
+        system ("pause");
+    }
     return 0;
 }
 
