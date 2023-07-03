@@ -7,6 +7,10 @@
 #include "file_test.h"
 #include "net_test.h"
 
+#ifdef  WIN32
+#pragma comment("lib", pthread);
+#endif
+
 using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono;
@@ -58,11 +62,12 @@ int main() {
 //    char in[2];
 //    scanf("%s",in);
 //    cout << in <<endl;
+//    thread_test().join();
 
-//    socket_test();
-    socket_send_test();
-    while (1){
-        system ("pause");
+    socket_test();
+//    socket_send_test();
+    while (1) {
+        system("pause");
     }
     return 0;
 }
