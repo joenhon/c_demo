@@ -8,7 +8,7 @@
 #include "net_test.h"
 
 #ifdef  WIN32
-#pragma comment("lib", pthread);
+#pragma comment(lib,"wsock32.lib")
 #endif
 
 using namespace std;
@@ -66,9 +66,19 @@ int main() {
 
     socket_test();
 //    socket_send_test();
-    while (1) {
-        system("pause");
-    }
+//    auto t1 = create_thread([](int i1,int i2) {
+//        printf("%d", i1*i2);
+//    }, 23,32);
+//    t1.join();
+
+    printf("线程启动完成");
+
+#ifdef  WIN32
+    system ("pause");
+#endif
+#ifdef linux
+    pause();
+#endif
     return 0;
 }
 

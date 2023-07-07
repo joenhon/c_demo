@@ -7,6 +7,7 @@
 #include <iostream>
 #include <thread>
 #include <sstream>
+#include <list>
 
 using namespace std;
 using namespace std::this_thread;
@@ -22,6 +23,13 @@ namespace grammar{
             return 0;
         };
         thread t1(tm1,2);
+        return t1;
+    }
+
+    template<class F, class... Args> thread create_thread( F&& f, Args&& ...args){
+        static list<thread*> list;
+        thread t1(f, forward<Args>(args)...);
+        list.push_back(&t1);
         return t1;
     }
 

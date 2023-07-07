@@ -29,7 +29,7 @@
 #include <thread>
 
 struct conf {
-    int port = 8132;//端口
+    int port = 8032;//端口
     int buff_size = 2 >> 10;//缓存大小
     const char *ip = "0.0.0.0";
 
@@ -37,7 +37,7 @@ struct conf {
 
 namespace net {
     void socket_test() {
-        static SOCKET sockfd = 0;
+        static int sockfd = 0;
 #ifdef WIN64
         //向Windows申请网络授权 WSAStartup 函数通过进程启动 Winsock DLL 的使用。
         // Declare some variables
@@ -68,9 +68,9 @@ namespace net {
 #endif
         sockaddr_in servaddr;
         sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-        if (sockfd == INVALID_SOCKET) {
+        if (sockfd == -1) {
             printf("初始化socket对象失败");
-            WSACleanup();
+//            WSACleanup();
             exit(-98);
         }
         memset(&servaddr, 0, sizeof(servaddr));
@@ -107,7 +107,7 @@ namespace net {
 
         void conn(int connfd);
         while (1) {
-            SOCKET connCode = accept(sockfd, nullptr, nullptr);
+            int connCode = accept(sockfd, nullptr, nullptr);
             if (connCode != -1){
                 thread ct(conn, connCode);
                 ct.detach();

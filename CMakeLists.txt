@@ -7,5 +7,5 @@ include_directories(hpp)
 
 add_executable(untitled3 main.cpp cpp/method_pointer.cpp hpp/grammar_test.h hpp/locality_pointer.h hpp/file_test.h hpp/file_test.h hpp/net_test.h)
 
-target_link_libraries(untitled3  wsock32)
+target_link_libraries(untitled3 pthread)
 
