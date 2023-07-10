@@ -28,7 +28,7 @@ namespace grammar{
 
     template<class F, class... Args> thread create_thread( F&& f, Args&& ...args){
         static list<thread*> list;
-        thread t1(f, forward<Args>(args)...);
+        thread t1(f, forward<Args>(args)...);//forward<Args>(args)...
         list.push_back(&t1);
         return t1;
     }

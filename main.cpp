@@ -6,6 +6,7 @@
 #include "locality_pointer.h"
 #include "file_test.h"
 #include "net_test.h"
+#include "ThreadPool.h"
 
 #ifdef  WIN32
 #pragma comment(lib,"wsock32.lib")
@@ -18,6 +19,7 @@ using namespace pointer;
 using namespace grammar;
 using namespace file;
 using namespace net;
+using namespace ThreadPoolTool_Joen;
 
 int main() {
 #ifdef  WIN32
@@ -64,12 +66,19 @@ int main() {
 //    cout << in <<endl;
 //    thread_test().join();
 
-    socket_test();
+//    socket_test();
 //    socket_send_test();
-//    auto t1 = create_thread([](int i1,int i2) {
-//        printf("%d", i1*i2);
+//    printf("线程启动");
+//    thread t1 = create_thread([](int i1,int i2) {
+//        printf("%d\n", i1*i2);
 //    }, 23,32);
 //    t1.join();
+
+    ThreadPool_ threadPool(4);
+    threadPool.add([](int i1,int i2) {
+        printf("%d", i1*i2);
+    }, 23,32);
+
 
     printf("线程启动完成");
 
